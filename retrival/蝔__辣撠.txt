@@ -1,5 +1,0 @@
-rank_score.php 將相同科目的分數排名
-enter_pNum.php 計算單科修課人數
-key_word.php 每個人的關鍵字及用關鍵字得到的職稱ID
-ability_point.php 取得能力指標，轉換成星數
-ability_compare.php 計算課程完成度
