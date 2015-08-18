@@ -34,6 +34,7 @@ function get_html_DOM_byCurl($url) {
 }
 
 	$link = mysql_connect("163.15.192.185","o9971","12345") or die("無法連接".mysql_error());
+	//$link = mysql_connect("163.15.192.201","o9971") or die("無法連接".mysql_error());
 	mysql_query("set names 'utf8'");
 	mysql_select_db("o9971")or die ("無法選擇資料庫".mysql_error()); 
 //找出上次抓取資料的日期

@@ -96,7 +96,7 @@ class Rest_auth extends REST_Controller
 		$this->benchmark->mark('student_auth_stop');
 		debug($http_status);
 		log_message('debug',"student login time is($url): " . $this->benchmark->elapsed_time('student_auth_start', 'student_auth_stop'));
-		//debug($response);
+		//print_r($response);
 		if( $response !=NULL) //檢查是否通過認證
 		{
 			if($http_status!='302') 
