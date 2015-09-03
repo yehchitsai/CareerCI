@@ -1,0 +1,9 @@
+		     <div data-role="fieldcontain">
+				<H3 align="center">您好</H3>
+				<ul data-role="listview" data-inset="true">
+
+					<li><a href="#p2_1_job">職業選擇</a></li>
+					<li><a href="#p2_2_track">夢想追蹤</a></li>
+					<li><a href="#p2_3_push">訊息接收</a></li>
+				</ul>
+			</div>
