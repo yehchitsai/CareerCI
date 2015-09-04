@@ -70,9 +70,9 @@
 						$("<li/>", {
 						"id":"test"+i,
 						"class":"ui-btn",
-						"html": "<a href='#' >" + b[i]['jt_name'] +
+						"html": "<a href='#detailJob' >" + b[i]['jt_name'] + "</a>" +
 								"<a href='#' class='split-button-custom' onclick='alert('已成功追蹤');' data-role='button' data-icon='star' data-iconpos='notext'>追蹤</a>"+
-								"<br/>"+"<a href='#score' rel='external'><progress value='100' max='100' ></progress></a></a>"
+								"<br/>"+"<a href='#score' rel='external'><progress value='100' max='100' ></progress></a>"
 						}).appendTo("#jt");
 						
 					}			
@@ -96,4 +96,3 @@
 					     data-split-icon="star" data-split-theme="a">
 					</ul>		
 			 </div>
-		  </div>

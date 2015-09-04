@@ -11,25 +11,34 @@ class Career extends CI_Controller{
         header('Access-Control-Max-Age: 1000');
         header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');		
     }  
-	function Menu()
+	function menu()
 	{
 		$this->load->view('p2_menu');
 	}
 
-	function Job()
+	function job()
 	{
 		$this->load->view('p2_1_job');
 	}
-	function Track()
+	function detailJob()
+	{
+		$this->load->view('p2_1_1_detailJob');
+	}
+	function score()
+	{
+		$this->load->view('p2_1_2_score');
+	}
+
+	function track()
 	{
 		$this->load->view('p2_2_track');
 	}
-	function Push()
+	function push()
 	{
 		$this->load->view('p2_3_push');
 	}
 
-	function Login()
+	function login()
 	{
 		$this->load->view('p1_login');
 	}

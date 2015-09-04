@@ -1,20 +1,3 @@
-	<style>
-		#sender{
-			font-size : 115%;
-		}
-		#message{
-			font-size : 100%;
-		}		
-		#info{
-			font-size : 75%;
-			height : 100%;
-			overflow : hidden;
-			white-space:normal;
-			word-break:normal;
-			
-		}
-	</style>
-			<H3 align="center">訊息接收</H3>
 			<div data-role="collapsible-set">
 				<div data-role="collapsible">
 					<h3>修課建議</h3>
