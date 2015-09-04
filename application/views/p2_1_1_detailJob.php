@@ -1,6 +1,6 @@
 		    <div data-role="fieldcontain" align="center">
 
-				<ul data-role="listview" data-theme="c" data-dividertheme="d">
+<!-- 				<ul data-role="listview" data-theme="c" data-dividertheme="d"> -->
 					<ul data-role="listview" data-inset="true" align="center" >
 						<li>
 							<a href="#">
@@ -42,5 +42,5 @@
 							</a>							
 						</li>
 					</ul>
-				</ul>
+<!--				</ul> -->
 			</div>
