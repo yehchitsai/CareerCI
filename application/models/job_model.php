@@ -17,7 +17,16 @@ class Job_model extends CI_Model {
 		$result = $this->db->query($sql);
 		//echo $sql;
 		return $result->result_array();
-	}	
+	}	 
+	
+	function getTitle()
+	{
+		$sql = "SELECT * FROM `job_title` ";
+		$result = $this->db->query($sql);
+		//echo $sql;
+		return $result->result_array();
+	}
+	
 	function getjob(){
 		$id=$_POST["id"];
 		mysql_query("set names 'utf8'");

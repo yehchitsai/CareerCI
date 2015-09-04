@@ -19,6 +19,19 @@ class Job extends REST_Controller{
         header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
     }
 
+    function getTitle_options() {
+        $this->cors_headers();
+        //$this->response($_SERVER['HTTP_ORIGIN']);
+    }
+
+    function getTitle_get()
+    {
+		$this->cors_headers();
+		$this->load->model('job_model');
+		$data = $this->job_model->getTitle();
+        $this->response($data);
+    }
+	
     function getJob_options() {
         $this->cors_headers();
         $this->response($_SERVER['HTTP_ORIGIN']);

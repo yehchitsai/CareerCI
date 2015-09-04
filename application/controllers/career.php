@@ -16,7 +16,7 @@ class Career extends CI_Controller{
 		$this->load->view('p2_menu');
 	}
 
-	function Jobs()
+	function Job()
 	{
 		$this->load->view('p2_1_job');
 	}

@@ -21,7 +21,7 @@
 <script>
 $("#login").on("click" , function(e, data) {
 	console.log("Login click");
-	$.mobile.changePage("#menu_2",{reload:true});			
+	$.mobile.changePage("#menu",{reload:true});			
 	return false;
 });
 </script>

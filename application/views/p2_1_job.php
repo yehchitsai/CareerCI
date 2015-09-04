@@ -1,110 +1,99 @@
-﻿
-<style type="text/css"> 
-	.split-button-custom {
-    float: right;
-    margin-right: 10px;
-    margin-top: -32px;
-    border-bottom-left-radius: 1em 1em;
-    border-bottom-right-radius: 1em 1em;
-    border-top-left-radius: 1em 1em;
-    border-top-right-radius: 1em 1em;   
-}
+﻿		<style>
+		<!--分數條顏色(啟始)-->
+		html{text-align:center;}
+		progress[value]{width:100%;height:50px;border:1px solid #ccc;border-radius:2px;margin:100px 0;color:#fff;align:left;
+			background: -moz-linear-gradient(left, #F9F900 0%, #F9F900 20%, transparent 20%, transparent 20%, #0080FF 20%, #0080FF 40%, transparent 40%, transparent 40%, #28FF28 40%, #28FF28 60%, transparent 40%, transparent 40%, #28FF28 40%, #28FF28 60%, transparent 60%, transparent 60%, #EA7500 60%, #EA7500 80%, transparent 80%, transparent 80%, #FF0000 80%, #FF0000 100%);
+			background: -webkit-gradient(linear, left top, right top, color-stop(0%,#F9F900), color-stop(19%,#F9F900), color-stop(19%,transparent), color-stop(21%,transparent), color-stop(21%,#0080FF), color-stop(39%,#0080FF), color-stop(39%,transparent), color-stop(41%,transparent), color-stop(41%,#28FF28), color-stop(59%,#28FF28), color-stop(39%,transparent), color-stop(41%,transparent), color-stop(41%,#28FF28), color-stop(59%,#28FF28), color-stop(59%,transparent), color-stop(61%,transparent), color-stop(61%,#EA7500), color-stop(79%,#EA7500), color-stop(79%,transparent), color-stop(81%,transparent), color-stop(81%,#FF0000), color-stop(100%,#FF0000));
+			background: -webkit-linear-gradient(left, #F9F900 0%,#F9F900 19%,transparent 19%,transparent 21%,#0080FF 21%,#0080FF 39%,transparent 39%,transparent 41%,#28FF28 41%,#28FF28 59%,transparent 39%,transparent 41%,#28FF28 41%,#28FF28 59%,transparent 59%,transparent 61%,#EA7500 61%,#EA7500 79%,transparent 79%,transparent 81%,#FF0000 81%,#FF0000 100%);
+			background: -o-linear-gradient(left, #F9F900 0%,#F9F900 20%,transparent 20%,#46A3FF 20%,#46A3FF 40%,transparent 40%,transparent 40%,#28FF28 40%,#28FF28 60%,transparent 60%,transparent 40%,#28FF28 40%,#28FF28 60%,transparent 60%,transparent 60%,#EA7500 60%,#EA7500 80%,transparent 80%,transparent 80%,#FF0000 80%,#FF0000 100%);
+			background: -ms-linear-gradient(left, #F9F900 0%,#F9F900 20%,transparent 20%,#46A3FF 20%,#46A3FF 40%,transparent 40%,transparent 40%,#28FF28 40%,#28FF28 60%,transparent 60%,transparent 40%,#28FF28 40%,#28FF28 60%,transparent 60%,transparent 60%,#EA7500 60%,#EA7500 80%,transparent 80%,transparent 80%,#FF0000 80%,#FF0000 100%);
+			background: linear-gradient(to right, #F9F900 0%,#F9F900 20%,transparent 20%,#46A3FF 20%,#46A3FF 40%,transparent 40%,transparent 40%,#28FF28 40%,#28FF28 60%,transparent 60%,transparent 40%,#28FF28 40%,#28FF28 60%,transparent 60%,transparent 60%,#EA7500 60%,#EA7500 80%,transparent 80%,transparent 80%,#FF0000 80%,#FF0000 100%);
+			-webkit-transform:rotate(180deg);
+			-ms-transform:rotate(180deg);
+			transform:rotate(180deg);
+			-webkit-appearance:none;
+			-moz-appearance:none;
+			appearance:none;
+		}
+		progress[value]::-webkit-progress-bar{background-color:transparent;position:relative;}
+		progress[value]::-webkit-progress-value{width:100%;background-color:#fff;background-size:100%;position:relative;overflow:hidden;
+			 -webkit-transition:width 0.6s ease;
+			-moz-transition:width 0.6s ease;
+			-o-transition:width 0.6s ease;
+			transition:width 0.6s ease;
+		}
+		<!--分數條顏色(結束)-->
+		</style>
+		<script type="text/javascript">
+		$(document).ready(function(){
+			console.log("CILocation = " + CILocation);
+			$.ajax({
+				type:"get",
+				url:CILocation + "job/getTitle",
+				datatype:"json",
+				cache:false,
+				success:success,
+				error:error
+			});
+		
+			
+			
+		});
+		function success(data)
+		{
+		
+		
+		
+		//	alert(data);
+			console.log(data);
+			//data  = eval(data)
+			var b=data;
+			str ="";
+				if (b!=null){
+					for (var i=0;i<b.length;i++)
+					{
+					
+						str += b[i]['jt_name'] + "<BR>\n";
+						
+				
+								//分數條設定值(開始)	
+			var progressVal = $('progress').val(),
+			progressStep = 1,
+			progressDirection = 1;
 
-.split-button-custom span.ui-btn-inner {
-    border-bottom-left-radius: 1em 1em;
-    border-bottom-right-radius: 1em 1em;
-    border-top-left-radius: 1em 1em;
-    border-top-right-radius: 1em 1em;
-    padding-right: 0px;
-}
-
-.split-button-custom span.ui-icon {
-    margin-top: 0px;
-    right: 0px;
-    top: 0px;
-    position: relative;
-}	
-.split-custom-wrapper {
-    /* position wrapper on the right of the listitem */
-    position: absolute;
-    right: 0;
-    top: 0;
-    height: 100%;
-}
-
-.split-custom-button {
-    position: relative;
-    float: right;   /* allow multiple links stacked on the right */
-    height: 100%;
-    margin:0;
-    min-width:3em;
-    /* remove boxshadow and border */
-    border:none;
-    moz-border-radius: 0;
-    webkit-border-radius: 0;
-    border-radius: 0;
-    moz-box-shadow: none;
-    webkit-box-shadow: none;
-    box-shadow: none;
-}
-
-.split-custom-button span.ui-btn-inner {
-    /* position icons in center of listitem*/
-    position: relative;
-    margin-top:50%;
-    margin-left:50%;
-    /* compensation for icon dimensions */
-    top:11px; 
-    left:-12px;
-    height:40%; /* stay within boundaries of list item */
-}
-</style>
+		setInterval(function() {
+		  progressVal =100-85;//反轉分數
+		  $('progress').val(progressVal);
+		});
+		//分數條設定值(結束)
+						
+						$("<li/>", {
+						"id":"test"+i,
+						"class":"ui-btn",
+						"html": "<a href='#' >" + b[i]['jt_name'] +
+								"<a href='#' class='split-button-custom' onclick='alert('已成功追蹤');' data-role='button' data-icon='star' data-iconpos='notext'>追蹤</a>"+
+								"<br/>"+"<a href='#score' rel='external'><progress value='100' max='100' ></progress></a></a>"
+						}).appendTo("#jt");
+						
+					}			
+				}
+		//	document.write(str);
+		//	console.log('success');
+		//	console.log(data);
+		//	alert('追蹤成功');	
+		}
+	
+		function error(data)
+		{
+		//	alert(data);
+		console.log(data);
+		}
+		</script>
+		
 		     <div data-role="fieldcontain">
 				<H3 align="center">請選擇你未來想要達成的職業</H3>
-					<ul id="jt" class="jtc" data-role="listview" data-filter="true" data-theme="b" style="margin-bottom: 50px;"
-					     data-split-icon="star" data-split-theme="c">
-					<li >
-						<a href="#">Specification</a>
-						<a href="#">職業</br>分數條</a> 
-					</li>
-					<li >
-						<a href="#">職業</br>分數條</a> 
-					</li>  
-					
-<!-- 				<table id="jt">
-						
-					</table>
-			
-					
-					
-
-
-<ul data-role="listview" id="ul0" data-theme="a" class="test">
--->
-  <li>
-    <a href="#" onclick="alert('the item!');">
-      <h3>The item</h3>
-    </a>
-    <a href="#" onclick="alert('1st splitbutton!');" class="split-button-custom" data-role="button" data-icon="gear" data-iconpos="notext">1st link</a>
-    <a href="#" onclick="alert('2nd splitbutton!');" class="split-button-custom" data-role="button" data-icon="arrow-r" data-iconpos="notext">2nd link</a>
-    <a href="#" style="display: none;">Dummy</a>
-  </li>
-<!--
-http://stackoverflow.com/questions/8322742/listview-with-more-than-one-split-button
-</ul>
--->					   
-				</ul>
-<ul data-role="listview">
-    <li>
-        <a href="#">
-            <img class="cover" src="./cover.jpg"/>
-            <h3>title</h3>
-            <p>description</p>
-        </a>
-        <div class="split-custom-wrapper">
-            <a href="#" data-role="button" onclick="alert('1st splitbutton!');" class="split-custom-button" data-rel="dialog" data-theme="c">h1</a>
-            <a href="#" data-role="button" onclick="alert('2nd splitbutton!');" class="split-custom-button" data-icon="delete" data-rel="dialog" data-theme="c" data-iconpos="notext">h2</a>           
-        </div>
-    </li>
-</ul>			
+					<ul id="jt" class="jtc" data-role="listview" data-filter="false" data-theme="a" style="margin-bottom: 50px;"
+					     data-split-icon="star" data-split-theme="a">
+					</ul>		
 			 </div>
+		  </div>
