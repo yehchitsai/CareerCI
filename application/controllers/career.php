@@ -16,10 +16,10 @@ class Career extends CI_Controller{
 		$user_name = array('user_name'=>$this->session->userdata('user_name'));
 		$this->parser->parse('p2_menu', $user_name);
 	}
-
 	function job()
 	{
-		$this->load->view('p2_1_job');
+		$data=$this->job_model->getTitle();
+		//$this->parser->parse('p2_1_job', $temp);
 	}
 	function detailJob()
 	{
