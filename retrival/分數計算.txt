@@ -1,0 +1,22 @@
+已修課程數
+SELECT count(*) FROM `professional_subject` INNER JOIN `subject` ON professional_subject.subject_name=subject.subject_name INNER JOIN `student_subject` ON subject.subject_id=student_subject.subject_id WHERE `jt_name`='電子商務技術人員' AND student_subject.s_id='A0128307' 
+
+已修課程資料
+SELECT * FROM `professional_subject` INNER JOIN `subject` ON professional_subject.subject_name=subject.subject_name INNER JOIN `student_subject` ON subject.subject_id=student_subject.subject_id WHERE `jt_name`='電子商務技術人員' AND student_subject.s_id='A0128307' 
+
+職稱推薦課程
+SELECT * FROM `professional_subject` WHERE `jt_name`='電子商務技術人員'
+
+職稱推薦課程數
+SELECT count(*) FROM `professional_subject` WHERE `jt_name`='電子商務技術人員'
+
+排名成績
+SELECT round(sum((student_subject.pNum-student_subject.class_rank+1)/student_subject.pNum)/count(*)*30,0) FROM `professional_subject` INNER JOIN `subject` ON professional_subject.subject_name=subject.subject_name INNER JOIN `student_subject` ON subject.subject_id=student_subject.subject_id WHERE `jt_name`='電子商務技術人員' AND student_subject.s_id='A0128307' 
+
+證照成績
+SELECT (case when sum(license.value)>100 then 30 else sum(license.value)*0.3 end) as v FROM `student_license` INNER JOIN `license` ON student_license.l_id=license.l_id WHERE `s_id`='A0128307' 
+
+
+課程完成度＝以修課程數/職稱推薦課程數＊0.3
+
+總分＝課程完成度＋排名成績＋證照成績

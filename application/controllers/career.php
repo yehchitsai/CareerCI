@@ -7,13 +7,14 @@ class Career extends CI_Controller{
         parent::__construct();  
         $this->load->helper('url');
 		header('Access-Control-Allow-Origin: *');
-        header('Access-Control-Allow-Methods: GET, PUT, POST, OPTIONS');
+        header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
         header('Access-Control-Max-Age: 1000');
         header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');		
     }  
 	function menu()
 	{
-		$this->load->view('p2_menu');
+		$user_name = array('user_name'=>$this->session->userdata('user_name'));
+		$this->parser->parse('p2_menu', $user_name);
 	}
 
 	function job()

@@ -50,7 +50,8 @@ class Rest_auth extends REST_Controller
 				$auth='false';
 			else {
 				$auth='success';
-				
+				$temp=array('user_name' => $this->student_model->getNamebyID($name));
+				$this->session->set_userdata($temp);
 			}
 		}		
 		if($auth=='')
@@ -58,8 +59,8 @@ class Rest_auth extends REST_Controller
 		else{
 			$data = array(
 				'success' => true, 
-				'auth' => $auth, 
-				's_name' => $this->student_model->getNamebyID($name)
+				'auth' => $auth
+
 			);
 		}
 		$this->response($data);
