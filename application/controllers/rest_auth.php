@@ -21,11 +21,13 @@ class Rest_auth extends REST_Controller
     function student_options()
     {
 		$this->cors_headers();
+		$this->response($_SERVER['HTTP_ORIGIN']);
     }
 
     function student_post()
     {		
 		$this->cors_headers();
+		$this->load->model('student_model');
 		log_message('debug','start to login in student account');
 		$this->benchmark->mark('student_auth_start');
 		$auth='';
@@ -40,7 +42,6 @@ class Rest_auth extends REST_Controller
 		
 		$response = post_https($url, $post_data,$headers,$http_status);
 		$this->benchmark->mark('student_auth_stop');
-//		debug($http_status);
 		log_message('debug',"student login time is($url): " . $this->benchmark->elapsed_time('student_auth_start', 'student_auth_stop'));
 		//print_r($response);
 		if( $response !=NULL) //檢查是否通過認證
@@ -53,11 +54,14 @@ class Rest_auth extends REST_Controller
 			}
 		}		
 		if($auth=='')
-		  $data = array('success' => false, 'auth' => false);
+			$data = array('success' => false, 'auth' => false);
 		else{
-		  $data = array('success' => true, 'auth' => $auth);
+			$data = array(
+				'success' => true, 
+				'auth' => $auth, 
+				's_name' => $this->student_model->getNamebyID($name)
+			);
 		}
-		log_message('debug',"group = " . $this->session->userdata('group'));
 		$this->response($data);
     }
 	
