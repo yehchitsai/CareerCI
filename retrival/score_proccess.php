@@ -1,6 +1,6 @@
 <?php 
 	$time_start = microtime(true);
-	$link = mysqli_connect("127.0.0.1","test","12345") or die("無法連接".mysql_error());  
+	$link = mysqli_connect("163.15.192.201","a0128307","1234") or die("無法連接".mysql_error());  
 	mysqli_query($link,"set names 'utf8'");
 	mysqli_select_db($link,"career")or die ("無法選擇資料庫".mysql_error()); 
 	$stu_name=array();
@@ -62,4 +62,6 @@
     $time_end = microtime(true);
 	$time = $time_end - $time_start;
     echo "success INSERT ".$count." data used time".$time;
+    
+    mysqli_close ($link);
  ?>
