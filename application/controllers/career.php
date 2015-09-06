@@ -24,7 +24,8 @@ class Career extends CI_Controller{
 		$result = $this->db->query($sql);
 		foreach ($result->result() as $row)
 		{
-		   $obj=array("jt_name"=>$row->jt_name,"score"=>$row->total);
+			$td=$this->job_model->progress_bar($row->total);
+		   $obj=array("jt_name"=>$row->jt_name,"score"=>$row->total,"progress_bar"=>$td);
 		   $data[$a]=$obj;$a++;
 		}
 		$patten=array("job_query"=>$data);
@@ -64,5 +65,6 @@ class Career extends CI_Controller{
 		$this->load->model('area_model');
 		$this->area_model->search();
 	}
+	
 }  
 ?> 

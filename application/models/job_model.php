@@ -128,4 +128,47 @@ class Job_model extends CI_Model {
 			$row=mysql_fetch_assoc($result);
 			return $row['val'];
 	}
+	function progress_bar($val){
+		$dom="<div class='progress'>";
+		if ($val<=20) {
+			$dom.='<div class="progress-bar progress-bar-success" style="width: '.$val.'%"></div>';
+			$dom.='<div class="progress-bar progress-bar-empty" style="width: '.(100-$val).'%"><span style="color:black;">'.$val.'分</span></div></div>';
+			return $dom;
+		}
+		else if ($val>20&&$val<=40){
+			$dom.='<div class="progress-bar progress-bar-success" style="width:20%">0%~20%</div>';
+			$dom.='<div class="progress-bar progress-bar-info" style="width: '.($val-20).'%"></div>';
+			$dom.='<div class="progress-bar progress-bar-empty" style="width: '.(80-$val).'%"><span style="color:black;">'.$val.'分</span></div></div>';
+			return $dom;
+		}
+		else if ($val>40&&$val<=60){
+			$dom.='<div class="progress-bar progress-bar-success" style="width:20%">0%~20%</div>';
+			$dom.='<div class="progress-bar progress-bar-info" style="width:20%">20%~40%</div>';
+			$dom.='<div class="progress-bar progress-bar-danger" style="width: '.($val-40).'%"></div>';
+			$dom.='<div class="progress-bar progress-bar-empty" style="width: '.(60-$val).'%"><span style="color:black;">'.$val.'分</span></div></div>';
+			return $dom;
+		}
+		else if ($val>60&&$val<=80){
+			$dom.='<div class="progress-bar progress-bar-success" style="width:20%">0%~20%</div>';
+			$dom.='<div class="progress-bar progress-bar-info" style="width:20%">20%~40%</div>';
+			$dom.='<div class="progress-bar progress-bar-danger" style="width:20%">40%~60%</div>';
+			$dom.='<div class="progress-bar progress-bar-warning" style="width: '.($val-60).'%"></div>';
+			$dom.='<div class="progress-bar progress-bar-empty" style="width: '.(40-$val).'%"><span style="color:black;">'.$val.'分</span></div></div>';
+			return $dom;
+		}
+		else if ($val>80&&$val<100) {
+			$dom.='<div class="progress-bar progress-bar-success" style="width:20%">0%~20%</div>';
+			$dom.='<div class="progress-bar progress-bar-info" style="width:20%">20%~40%</div>';
+			$dom.='<div class="progress-bar progress-bar-danger" style="width:20%">40%~60%</div>';
+			$dom.='<div class="progress-bar progress-bar-warning" style="width: 20%">60%~80%</div>';
+			$dom.='<div class="progress-bar progress-bar-shiny" style="width: '.($val-80).'%"></div>';
+			$dom.='<div class="progress-bar progress-bar-empty" style="width: '.(20-$val).'%"><span style="color:black;">'.$val.'分</span></div></div>';
+			return $dom;
+		}
+		else if($val==100){
+			$dom.='<div class="progress-bar progress-bar-shiny" style="width: 20%">100分!</div></div>';
+			return $dom;
+		}
+
+	}
 }
