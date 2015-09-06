@@ -18,35 +18,18 @@ class Career extends CI_Controller{
 	}
 	function job()
 	{
-<<<<<<< HEAD
+		$data=array();$a=0;
 		$id = $this->session->userdata('user_id');
-		$sql ="SELECT jt_name FROM job_title";
+		$sql ="SELECT jt_name,total FROM `ability` inner join job_title on ability.jt_id=job_title.jt_id where s_id='".$id."' ORDER BY `ability`.`total` DESC";
 		$result = $this->db->query($sql);
-		$data=array();
-		$temp=array();
 		foreach ($result->result() as $row)
 		{
-		 	$temp[]=$row->jt_name;
-		}
-		for ($i=0; $i < sizeof($temp); $i++) { //職業類型query
-			$jt=$temp[$i];
-			//課程完成度
-			$learned=$this->job_model->learn_progress($jt,$id);
-			//職業類型
-			$score=$this->job_model->jt_board($jt,$id);
-			//證照成績
-			$l_score=$this->job_model->license_board($id);
-			$sum=100-($learned+$score+$l_score);
-			$obj=array("jt_name"=>$jt , "score"=>$sum);
-			$data[$i]=$obj;
+		   $obj=array("jt_name"=>$row->jt_name,"score"=>$row->total);
+		   $data[$a]=$obj;$a++;
 		}
 		$patten=array("job_query"=>$data);
-		//$data=$this->job_model->getTitle();
-		$this->parser->parse('p2_1_job', $temp);
-=======
-		$data=$this->job_model->getTitle();
-		//$this->parser->parse('p2_1_job', $temp);
->>>>>>> origin/master
+		$this->parser->parse('p2_1_job', $patten);
+
 	}
 	function detailJob()
 	{
