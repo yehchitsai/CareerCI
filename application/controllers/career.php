@@ -18,6 +18,7 @@ class Career extends CI_Controller{
 	}
 	function job()
 	{
+<<<<<<< HEAD
 		$id = $this->session->userdata('user_id');
 		$sql ="SELECT jt_name FROM job_title";
 		$result = $this->db->query($sql);
@@ -42,6 +43,10 @@ class Career extends CI_Controller{
 		$patten=array("job_query"=>$data);
 		//$data=$this->job_model->getTitle();
 		$this->parser->parse('p2_1_job', $temp);
+=======
+		$data=$this->job_model->getTitle();
+		//$this->parser->parse('p2_1_job', $temp);
+>>>>>>> origin/master
 	}
 	function detailJob()
 	{

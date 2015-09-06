@@ -25,6 +25,7 @@ class Job_model extends CI_Model {
 		$sql ="SELECT jt_name FROM `job_title`";
 		$result = $this->db->query($sql);
 		$num=0;
+<<<<<<< HEAD
 		$data=array();
 		$temp;
 		while($row = mysql_fetch_array($result, MYSQL_ASSOC)){
@@ -33,6 +34,14 @@ class Job_model extends CI_Model {
 		}
 		for ($i=0; $i < $temp.length ; $i++) { //職業類型query
 			$jt=$temp[$i]->jt_name;
+=======
+		while($row = mysql_fetch_array($result, MYSQL_ASSOC)){
+			$data[$num]->"jt_name"=$row['jt_name'];
+			$num++;
+		}
+		for ($i=0; $i < $data.length ; $i++) { //職業類型query
+			$jt=$data[$i]->jt_name;
+>>>>>>> origin/master
 			//課程完成度
 			$learned=learn_progress($jt,$id);
 			//職業類型
@@ -40,8 +49,12 @@ class Job_model extends CI_Model {
 			//證照成績
 			$l_score=license_board($id);
 			$sum=100-($learned+$score+$l_score);
+<<<<<<< HEAD
 			$obj=array("jt_name"=>$jt , "score"=>$sum);
 			$data[$i]=$obj;
+=======
+			$data[$i]->"score"=$sum;
+>>>>>>> origin/master
 		}
 		return $data;
 	}
@@ -101,11 +114,18 @@ class Job_model extends CI_Model {
 			$result = $this->db->query($sql);
 			$t2=mysql_fetch_assoc($result);
 			$t2v=$t2['val'];
+<<<<<<< HEAD
 			$proccess=((t1v/t2v)*0.3)
 			return $proccess;
 	}
 	function jt_board($jt,$id){
 			$sql="SELECT round(sum((student_subject.pNum-student_subject.class_rank+1)/student_subject.pNum)/count(*)*30,0)as val FROM `professional_subject` INNER JOIN `subject` ON professional_subject.subject_name=subject.subject_name INNER JOIN `student_subject` ON subject.subject_id=student_subject.subject_id WHERE `jt_name`='$jt' AND student_subject.s_id='$id'";
+=======
+			return ((t1v/t2v)*0.3);
+	}
+	function jt_board($jt,$id){
+			$sql="SELECT round(sum((student_subject.pNum-student_subject.class_rank+1)/student_subject.pNum)/count(*)*30,0)as val FROM `professional_subject` INNER JOIN `subject` ON professional_subject.subject_name=subject.subject_name INNER JOIN `student_subject` ON subject.subject_id=student_subject.subject_id WHERE `jt_name`='電子商務技術人員' AND student_subject.s_id='A0128307'";
+>>>>>>> origin/master
 			$result = $this->db->query($sql);
 			$row=mysql_fetch_assoc($result);
 			return $row['val'];
