@@ -11,16 +11,21 @@ class Career extends CI_Controller{
         header('Access-Control-Max-Age: 1000');
         header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');		
     }  
-	function menu()
+	function menu($receive)
 	{
-		$user_name = array('user_name'=>$this->session->userdata('user_name'));
-		$this->parser->parse('p2_menu', $user_name);
+		$query = $this->db->get_where('student', array('s_id' => $receive));
+		if ($query->num_rows() > 0) {
+			$row = $query->row();
+			$name=$row->s_name;
+		}
+		$patten = array('user_name'=>$name);
+		$this->parser->parse('p2_menu', $patten);
 	}
-	function job()
+	function job($receive)
 	{
+		$id=$receive;
 		$data=array();$a=0;
-		$id = $this->session->userdata('user_id');
-		$sql ="SELECT ability.jt_id,jt_name,total FROM `ability` inner join job_title on ability.jt_id=job_title.jt_id where s_id='".$id."' ORDER BY `ability`.`total` DESC";
+		$sql ="SELECT ability.jt_id,jt_name,total FROM `ability` inner join job_title on ability.jt_id=job_title.jt_id where s_id='".$receive."' ORDER BY `ability`.`total` DESC";
 		$result = $this->db->query($sql);
 		foreach ($result->result() as $row)
 		{
@@ -62,7 +67,7 @@ class Career extends CI_Controller{
 			};
 		   $obj=array("jt_name"=>$row->jt_name,"score"=>$row->total,"progress_bar"=>$dom);
 		   $data[$a]=$obj;$a++;
-		}
+		};
 		$patten=array("job_query"=>$data);
 		$this->parser->parse('p2_1_job', $patten);
 
@@ -71,11 +76,12 @@ class Career extends CI_Controller{
 	{
 		$this->load->view('p2_1_1_detailJob');
 	}
-	function score($id)
+	function score($receive)
 	{
+		$data=split('|', $receive);
 		$patten;
-		$s_id = $this->session->userdata('user_id');
-		$cla=$id;
+		$s_id = $data[0];
+		$cla=$data[1];
 		$sql ="SELECT * FROM `ability` inner join job_title on ability.jt_id=job_title.jt_id where s_id='".$s_id."' AND ability.jt_id='".$cla."' ";
 		$result = $this->db->query($sql);
 		foreach ($result->result() as $row)
