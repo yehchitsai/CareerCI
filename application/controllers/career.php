@@ -20,12 +20,12 @@ class Career extends CI_Controller{
 	{
 		$data=array();$a=0;
 		$id = $this->session->userdata('user_id');
-		$sql ="SELECT jt_name,total FROM `ability` inner join job_title on ability.jt_id=job_title.jt_id where s_id='".$id."' ORDER BY `ability`.`total` DESC";
+		$sql ="SELECT ability.jt_id,jt_name,total FROM `ability` inner join job_title on ability.jt_id=job_title.jt_id where s_id='".$id."' ORDER BY `ability`.`total` DESC";
 		$result = $this->db->query($sql);
 		foreach ($result->result() as $row)
 		{
 			$val=$row->total;
-			$dom="<div class='progress' id='pog'>";
+			$dom="<div class='progress' id='".$row->jt_id."'>";
 			if ($val<=20) {
 				$dom.='<div class="progress-bar progress-bar-success" style="width: '.$val.'%"></div>';
 				$dom.='<div class="progress-bar progress-bar-empty" style="width: '.(100-$val).'%"><span style="color:black;">'.$val.'分</span></div></div>';
@@ -58,7 +58,7 @@ class Career extends CI_Controller{
 			}
 			else if($val==100){
 				$dom.='<div class="progress-bar progress-bar-shiny" style="width: 20%">100分!</div></div>';
-				return $dom;
+				
 			};
 		   $obj=array("jt_name"=>$row->jt_name,"score"=>$row->total,"progress_bar"=>$dom);
 		   $data[$a]=$obj;$a++;
@@ -71,9 +71,53 @@ class Career extends CI_Controller{
 	{
 		$this->load->view('p2_1_1_detailJob');
 	}
-	function score()
+	function score($id)
 	{
-		$this->load->view('p2_1_2_score');
+		$patten;
+		$s_id = $this->session->userdata('user_id');
+		$cla=$id;
+		$sql ="SELECT * FROM `ability` inner join job_title on ability.jt_id=job_title.jt_id where s_id='".$s_id."' AND ability.jt_id='".$cla."' ";
+		$result = $this->db->query($sql);
+		foreach ($result->result() as $row)
+		{
+			$val=$row->total;
+			$dom="<div class='progress' id='".$row->jt_id."'>";
+			if ($val<=20) {
+				$dom.='<div class="progress-bar progress-bar-success" style="width: '.$val.'%"></div>';
+				$dom.='<div class="progress-bar progress-bar-empty" style="width: '.(100-$val).'%"><span style="color:black;">'.$val.'分</span></div></div>';
+			}
+			else if ($val>20&&$val<=40){
+				$dom.='<div class="progress-bar progress-bar-success" style="width:20%">0%~20%</div>';
+				$dom.='<div class="progress-bar progress-bar-info" style="width: '.($val-20).'%"></div>';
+				$dom.='<div class="progress-bar progress-bar-empty" style="width: '.(100-$val).'%"><span style="color:black;">'.$val.'分</span></div></div>';
+			}
+			else if ($val>40&&$val<=60){
+				$dom.='<div class="progress-bar progress-bar-success" style="width:20%">0%~20%</div>';
+				$dom.='<div class="progress-bar progress-bar-info" style="width:20%">20%~40%</div>';
+				$dom.='<div class="progress-bar progress-bar-danger" style="width: '.($val-40).'%"></div>';
+				$dom.='<div class="progress-bar progress-bar-empty" style="width: '.(100-$val).'%"><span style="color:black;">'.$val.'分</span></div></div>';
+			}
+			else if ($val>60&&$val<=80){
+				$dom.='<div class="progress-bar progress-bar-success" style="width:20%">0%~20%</div>';
+				$dom.='<div class="progress-bar progress-bar-info" style="width:20%">20%~40%</div>';
+				$dom.='<div class="progress-bar progress-bar-danger" style="width:20%">40%~60%</div>';
+				$dom.='<div class="progress-bar progress-bar-warning" style="width: '.($val-60).'%"></div>';
+				$dom.='<div class="progress-bar progress-bar-empty" style="width: '.(100-$val).'%"><span style="color:black;">'.$val.'分</span></div></div>';
+			}
+			else if ($val>80&&$val<100) {
+				$dom.='<div class="progress-bar progress-bar-success" style="width:20%">0%~20%</div>';
+				$dom.='<div class="progress-bar progress-bar-info" style="width:20%">20%~40%</div>';
+				$dom.='<div class="progress-bar progress-bar-danger" style="width:20%">40%~60%</div>';
+				$dom.='<div class="progress-bar progress-bar-warning" style="width: 20%">60%~80%</div>';
+				$dom.='<div class="progress-bar progress-bar-shiny" style="width: '.($val-80).'%"></div>';
+				$dom.='<div class="progress-bar progress-bar-empty" style="width: '.(100-$val).'%"><span style="color:black;">'.$val.'分</span></div></div>';
+			}
+			else if($val==100){
+				$dom.='<div class="progress-bar progress-bar-shiny" style="width: 20%">100分!</div></div>';
+			};
+		$patten=array("progress_bar"=>$dom,"learned"=>$row->rec_subject,"class_score"=>$row->rank_score,"lisence_score"=>$row->l_score,"total_score"=>$row->total);
+		}
+		$this->parser->parse('p2_1_2_score', $patten);
 	}
 
 	function track()

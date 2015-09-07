@@ -1,36 +1,24 @@
-		<script type="text/javascript">
-		//分數條設定值(開始)
-		var progressVal = $('progress').val(),
-			progressStep = 1,
-			progressDirection = 1;
-
-		setInterval(function() {
-		  progressVal =100-85;//反轉分數
-		  $('progress').val(progressVal);
-		});
-		//分數條設定值(結束)
-		</script>
 			<table align="center" width=80%>
 			<tr >
 				<td colspan="2">
-					<progress value="100" max="100" ></progress>
+					{progress_bar}
 				</td>
 			</tr>
 			<tr align="center">
 				<td>課程(占30%)：</td>
-				<td>Some Text</td>
+				<td>{learned}</td>
 			</tr>
 			<tr align="center">
 				<td>成績(占30%)：</td>
-				<td>Some Text</td>
+				<td>{class_score}</td>
 			</tr>
 			<tr align="center">
 				<td>證照(占40%)：</td>
-				<td>Some Text</td>
+				<td>{lisence_score}</td>
 			</tr>
 			<tr align="center">
 				<td><h2>總分：</h2></td>
-				<td><h2>Some Text<h2></td>
+				<td><h2>{total_score}<h2></td>
 			</tr>
 			
 			<tr>
