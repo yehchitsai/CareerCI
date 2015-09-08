@@ -1,4 +1,5 @@
 			<table align="center" width=80%>
+			<p>{jt_name}</p>
 			<tr >
 				<td colspan="2">
 					{progress_bar}

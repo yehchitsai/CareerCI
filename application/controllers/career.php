@@ -119,7 +119,7 @@ class Career extends CI_Controller{
 			else if($val==100){
 				$dom.='<div class="progress-bar progress-bar-shiny" style="width: 20%">100分!</div></div>';
 			};
-			$patten=array("progress_bar"=>$dom,"learned"=>$row->rec_subject,"class_score"=>$row->rank_score,"lisence_score"=>$row->l_score,"total_score"=>$row->total);
+			$patten=array("progress_bar"=>$dom,"learned"=>$row->rec_subject,"class_score"=>$row->rank_score,"lisence_score"=>$row->l_score,"total_score"=>$row->total,"jt_name"=>$row->jt_name);
 			$this->parser->parse('p2_1_2_score', $patten);
 		}
 		
