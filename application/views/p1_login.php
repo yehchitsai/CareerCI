@@ -1,7 +1,7 @@
 <div id="status"></div>
 <div id="id">
 	<label for="id">帳號：</label>
-	<input type="text" name="username" id="username" value="a0128307" placeholder="請輸入你的學號" data-theme="d">
+	<input type="text" name="username" id="username" value="a0128307" placeholder="請輸入你的學號">
 </div> 
 
 <div id="password">

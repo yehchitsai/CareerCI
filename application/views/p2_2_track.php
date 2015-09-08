@@ -4,14 +4,16 @@
 								<table data-role="table" id="movie-table-custom" data-mode="reflow" class="movie-list ui-responsive">
 								  <thead>
 									<tr>
-									  <th style="width:20%">刪除</th>
-									  <th style="width:80%">夢想職業</th>
+									  <th>刪除</th>
+									  <th>夢想職業</th>
 									</tr>
 								  </thead>
 								  <tbody>
-									  <td style="width:20%">
-										<input type="button" value="刪除">
-									  
+									 <tr> 
+									  <th>
+										<a data-role="button" data-icon="delete" data-iconpos="notext">刪除</a>
+									  </th>
+									 <tr>
 								  </tbody>
 								</table>					
 							</li>
