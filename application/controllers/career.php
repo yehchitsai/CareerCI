@@ -23,14 +23,13 @@ class Career extends CI_Controller{
 	}
 	function job($receive)
 	{
-		$id=$receive;
 		$data=array();$a=0;
 		$sql ="SELECT ability.jt_id,jt_name,total FROM `ability` inner join job_title on ability.jt_id=job_title.jt_id where s_id='".$receive."' ORDER BY `ability`.`total` DESC";
 		$result = $this->db->query($sql);
 		foreach ($result->result() as $row)
 		{
 			$val=$row->total;
-			$dom="<div class='progress' id='".$row->jt_id."'>";
+			$dom='<div class="progress" id="'.$row->jt_id.'">';
 			if ($val<=20) {
 				$dom.='<div class="progress-bar progress-bar-success" style="width: '.$val.'%"></div>';
 				$dom.='<div class="progress-bar progress-bar-empty" style="width: '.(100-$val).'%"><span style="color:black;">'.$val.'分</span></div></div>';
@@ -67,10 +66,9 @@ class Career extends CI_Controller{
 			};
 		   $obj=array("jt_name"=>$row->jt_name,"score"=>$row->total,"progress_bar"=>$dom);
 		   $data[$a]=$obj;$a++;
-		};
+		}
 		$patten=array("job_query"=>$data);
 		$this->parser->parse('p2_1_job', $patten);
-
 	}
 	function detailJob()
 	{
@@ -78,14 +76,14 @@ class Career extends CI_Controller{
 	}
 	function score($receive)
 	{
-		$data=split('|', $receive);
-		$patten;
+		$receive=urldecode($receive);
+		$data=explode('|', $receive);
 		$s_id = $data[0];
 		$cla=$data[1];
 		$sql ="SELECT * FROM `ability` inner join job_title on ability.jt_id=job_title.jt_id where s_id='".$s_id."' AND ability.jt_id='".$cla."' ";
 		$result = $this->db->query($sql);
-		foreach ($result->result() as $row)
-		{
+		if ($result->num_rows() > 0) {
+			$row = $result->row();
 			$val=$row->total;
 			$dom="<div class='progress' id='".$row->jt_id."'>";
 			if ($val<=20) {
@@ -121,9 +119,10 @@ class Career extends CI_Controller{
 			else if($val==100){
 				$dom.='<div class="progress-bar progress-bar-shiny" style="width: 20%">100分!</div></div>';
 			};
-		$patten=array("progress_bar"=>$dom,"learned"=>$row->rec_subject,"class_score"=>$row->rank_score,"lisence_score"=>$row->l_score,"total_score"=>$row->total);
+			$patten=array("progress_bar"=>$dom,"learned"=>$row->rec_subject,"class_score"=>$row->rank_score,"lisence_score"=>$row->l_score,"total_score"=>$row->total);
+			$this->parser->parse('p2_1_2_score', $patten);
 		}
-		$this->parser->parse('p2_1_2_score', $patten);
+		
 	}
 
 	function track()
