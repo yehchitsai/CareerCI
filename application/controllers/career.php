@@ -149,6 +149,15 @@ class Career extends CI_Controller{
 		$this->load->model('area_model');
 		$this->area_model->search();
 	}
-	
+	function chkversion($receive){
+		$receive=urldecode($receive);
+		if (base64_decode($receive)!="0.0.1") {
+			echo "false";
+		}
+		else
+		{
+			echo "true";
+		}
+	}
 }  
 ?> 

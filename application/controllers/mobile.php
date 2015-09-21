@@ -103,7 +103,7 @@ class Mobile extends REST_Controller
          );
 
 		$headers = array(
-             'Authorization: key=AIzaSyBz0VqS8eyBt2IC-pLIra0u9XAJzTfpJ_k',
+             'Authorization: key=AIzaSyBUNr59L7EKcpX3KUdODfUYQGNYw7jT0Zs',
              'Content-Type: application/json'
 		);
 		// Open connection

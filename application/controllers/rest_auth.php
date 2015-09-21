@@ -63,6 +63,5 @@ class Rest_auth extends REST_Controller
 		}
 		$this->response($data);
     }
-	
 }
 ?>
