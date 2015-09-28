@@ -64,7 +64,7 @@ class Career extends CI_Controller{
 				$dom.='<div class="progress-bar progress-bar-shiny" style="width: 20%">100分!</div></div>';
 				
 			};
-		   $obj=array("jt_name"=>$row->jt_name,"score"=>$row->total,"progress_bar"=>$dom);
+		   $obj=array("jt_name"=>$row->jt_name,"score"=>$row->total,"progress_bar"=>$dom,"jt_id"=>$row->jt_id);
 		   $data[$a]=$obj;$a++;
 		}
 		$patten=array("job_query"=>$data);
@@ -125,9 +125,17 @@ class Career extends CI_Controller{
 		
 	}
 
-	function track()
+	function track($receive)
 	{
-		$this->load->view('p2_2_track');
+		$data=array();$a=0;
+		$sql='SELECT * FROM `track` inner join job_title on track.jt_id=job_title.jt_id where s_id="'.$receive.'"';
+		$result = $this->db->query($sql);
+		foreach ($result->result() as $row){
+			$obj=array("jt_id"=>$row->jt_id,"jt_name"=>$row->jt_name,"track_date"=>$row->t_date);
+			$data[$a]=$obj;$a++;
+		}
+		$patten=array("track_query"=>$data);
+		$this->parser->parse('p2_2_track', $patten);
 	}
 	function push()
 	{
@@ -157,6 +165,34 @@ class Career extends CI_Controller{
 		else
 		{
 			echo "true";
+		}
+	}
+	function gettrack($receive){
+		$data=array();$a=0;
+		$sql='SELECT * FROM `track` inner join job_title on track.jt_id=job_title.jt_id where s_id="'.$receive.'"';
+		$result = $this->db->query($sql);
+		foreach ($result->result() as $row){
+			$obj=array("jt_id"=>$row->jt_id,"jt_name"=>$row->jt_name,"track_date"=>$row->t_date);
+			$data[$a]=$obj;$a++;
+		}
+		echo json_encode($data);
+	}
+	function addtrack($s_id,$jt_id){
+		$sql="INSERT INTO `track`(`s_id`, `jt_id`, `t_date`) VALUES ('".ucfirst($s_id)."','".$jt_id."',now())";
+		if (!$this->db->query($sql)) {
+    		echo "FALSE";
+		}
+		else {
+    		echo "TRUE";
+		}
+	}
+	function deltrack($s_id,$jt_id){
+		$sql="DELETE FROM `track` WHERE `s_id`='".ucfirst($s_id)."' AND `jt_id`='".$jt_id."'";
+		if (!$this->db->query($sql)) {
+    		echo "FALSE";
+		}
+		else {
+    		echo "TRUE";
 		}
 	}
 }  

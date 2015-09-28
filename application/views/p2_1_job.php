@@ -5,10 +5,15 @@
 		{job_query}
 		<li class="ui-btn">
 			<a href='#detailJob' >{jt_name}</a>
-			<a href='#' class='split-button-custom' onclick='alert("已成功追蹤");' data-role='button' data-icon='star' data-iconpos='notext'>追蹤</a><br/>
+			<a href='#' class='split-button-custom track' id="track{jt_id}" onclick='addtrack(this)' data-role='button' data-icon='star' data-iconpos='notext'>追蹤</a><br/>
 			<a href='#score' class="jt_action"></a>
 			{progress_bar}
 		</li>
 		{/job_query}
-	</ul>		
+	</ul>
+	<script>
+	$(document).ready(function(){
+		settrack();
+	})
+	</script>
 </div>

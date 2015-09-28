@@ -6,13 +6,13 @@ require(APPPATH.'/libraries/REST_Controller.php');
 class My_track extends REST_Controller{     
     function __construct() {  
         parent::__construct();  
-//        $this->load->helper('url');
+        $this->load->helper('url');
     }  
 	
     function cors_headers() //Cross-origin resource sharing
     {
-	header('Access-Control-Allow-Origin: *');
-//	header('Access-Control-Allow-Origin: ' . $_SERVER['HTTP_ORIGIN']);
+		header('Access-Control-Allow-Origin: *');
+		header('Access-Control-Allow-Origin: ' . $_SERVER['HTTP_ORIGIN']);
         header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
         header('Access-Control-Max-Age: 1000');
         header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
@@ -21,7 +21,7 @@ class My_track extends REST_Controller{
 	{
 		$this->cors_headers();
 		$this->load->model('track_model');
-                $this->response($this->track_model->getJobcompetition($this->input->get_post('s_id'),$this->input->get_post('j_name')));
+        $this->response($this->track_model->getJobcompetition($this->input->get_post('s_id'),$this->input->get_post('j_name')));
 	}
 	function jobCompetition_options()
 	{
