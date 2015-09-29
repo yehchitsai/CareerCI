@@ -1,68 +1,16 @@
-		    <div data-role="fieldcontain" align="center">
-
-<!-- 				<ul data-role="listview" data-theme="c" data-dividertheme="d"> -->
-					<ul data-role="listview" data-inset="true" align="center" >
-						<li>
-							<a href="#">
-								<table align="center" width=80%>
-									<tr colspan="2">
-										<td>Internet軟體程式設計師</td>
-									</tr>
-									<tr colspan="2">
-										<td>魔數電腦多媒體股份有限公司</td>
-									</tr>
-									<tr colspan="2">
-										<td>待遇面議</td>	
-									</tr>
-									<tr>
-										<td>桃園市桃園區</td>
-										<td>7/7</td>
-									</tr>
-								</table>
-							</a>							
-						</li>
-
-						<li>
-							<a href="#">
-								<table align="center" width=80%>
-									<tr colspan="2">
-										<td>程式設計師</td>
-									</tr>
-									<tr colspan="2">
-										<td>英渥德科技股份有限公司</td>
-									</tr>
-									<tr colspan="2">
-										<td>依公司規定</td>	
-									</tr>
-									<tr colspan="2">
-										<td>台北市大安區</td>
-										<td>7/24</td>
-									</tr>
-								</table>							
-						
-							</a>							
-						</li>
-						
-						<li>
-							<a href="#">
-								<table align="center" width=80%>
-									<tr colspan="2">
-										<td>軟體工程師</td>
-									</tr>
-									<tr colspan="2">
-										<td>集佳股份有限公司</td>
-									</tr>
-									<tr colspan="2">
-										<td>依公司規定</td>	
-									</tr>
-									<tr colspan="2">
-										<td>新北市汐止區</td>
-										<td>7/24</td>
-									</tr>
-								</table>							
-						
-							</a>							
-						</li>
-					</ul>
-<!--				</ul> -->
+<div data-role="fieldcontain" align="center" style="overflow: auto">
+	<div class="row" id="mainlist">
+			<h2 style="text-align:center;" id="job_name" rel="{jt_id}">{jt_name}</h2>
+			<div class="list-group" style="text-align:left;">
+				{job_query}
+	  			<a class="list-group-item" rel="{j_url}">
+	    		<h1>{j_name}<small>{j_cname}</small></h1>
+	    		<h3>{j_address}<span class="label label-default">{j_setdate}</span></h3>
+	  			</a>
+	  			{/job_query}
+	  			<a class="list-group-item keepload">
+	    		<input type="button" class="form-control" rel="2" onclick=jobload(this) value="繼續載入">
+	  			</a>
 			</div>
+		</div>
+</div>
