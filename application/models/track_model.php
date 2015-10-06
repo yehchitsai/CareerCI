@@ -115,37 +115,35 @@ class Track_model extends CI_Model {
         }
 
         return $resultArray;
+    }
+    function gettrack($receive){
+        
+        $data=array();$a=0;
+        $sql='SELECT * FROM `track` inner join job_title on track.jt_id=job_title.jt_id where s_id="'.$receive.'"';
+        $result = $this->db->query($sql);
+        foreach ($result->result() as $row){
+            $obj=array("jt_id"=>$row->jt_id,"jt_name"=>$row->jt_name,"track_date"=>$row->t_date);
+            $data[$a]=$obj;$a++;
+        }
+        return json_encode($data);
     }	
-	function del_track($t_id)
-	{
-		$this->db->delete('job_track', array('t_id' => $t_id)); 
-		return 0;
-	}	
-	function select_track($s_id)
-	{
-		$query = $this->db->get_where('job_track',array('s_id'=>$s_id));
-//		return $query->result();
-		return $query->result_array();
-/*
-		$num=0;
-		foreach ($query->result_array() as $row)
-		{	
-			$result[$num]=array(
-				"j_name" => $row['j_name'],
-				"j_url" => $row['j_url'],
-				"j_cname" => $row['j_cname'],
-				"j_address" => $row['j_address'],
-				"j_date" => $row['j_date']
-				);
-			$num++;
-		}
-		$result1=json_encode($result);
-		//print_r($result);
-		
-		
-		echo $result1;
-*/
-	}
-}
-
-?>
+	function addtrack($s_id,$jt_id){
+        $sql="INSERT INTO `track`(`s_id`, `jt_id`, `t_date`) VALUES ('".ucfirst($s_id)."','".$jt_id."',now())";
+        if (!$this->db->query($sql)) {
+            return "FALSE";
+        }
+        else {
+            return "TRUE";
+        }
+    }
+    function deltrack($s_id,$jt_id){
+        $sql="DELETE FROM `track` WHERE `s_id`='".ucfirst($s_id)."' AND `jt_id`='".$jt_id."'";
+        if (!$this->db->query($sql)) {
+            return "FALSE";
+        }
+        else {
+            return "TRUE";
+        }
+    }
+	
+} ?>

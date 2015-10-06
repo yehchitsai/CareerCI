@@ -4,12 +4,12 @@
 			<div class="list-group" style="text-align:left;">
 				{job_query}
 	  			<a class="list-group-item" rel="{j_url}">
-	    		<h1>{j_name}<small>{j_cname}</small></h1>
-	    		<h3>{j_address}<span class="label label-default">{j_setdate}</span></h3>
+	    		<h5 class="jobtitle">{j_name}<small>{j_cname}</small></h5>
+	    		<h6 class="jobtitle">{j_address}<span class="label label-default">{j_setdate}</span></h6>
 	  			</a>
 	  			{/job_query}
 	  			<a class="list-group-item keepload">
-	    		<input type="button" class="form-control" rel="2" onclick=jobload(this) value="繼續載入">
+	    		<input type="button" class="form-control" rel="2" onclick=jobload(this) value="下一頁">
 	  			</a>
 			</div>
 		</div>
