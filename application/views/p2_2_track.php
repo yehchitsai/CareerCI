@@ -10,7 +10,7 @@
 			<tbody>
 				{track_query}
 				<tr>
-					<td>{jt_name}</td>
+					<td><a href='#detailJob@todetailJob@{jt_id}'>{jt_name}</a></td>
 					<td>{track_date}</td>
 					<td><input type="button" class="btn btn-default" id="deltrack{jt_id}" value="取消追蹤" onclick="deltrack(this)"></td>
 				</tr>

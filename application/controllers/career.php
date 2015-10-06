@@ -30,7 +30,7 @@ class Career extends CI_Controller{
 	function detailJob($receive)
 	{
 		$this->load->model('job_model');
-		$patten=$this->job_model->getdetailJob($receive);
+		$patten=$this->job_model->loaddetailJob($receive);
 		$this->parser->parse('p2_1_1_detailJob', $patten);
 		//$this->load->view('p2_1_1_detailJob');
 	}
@@ -76,7 +76,7 @@ class Career extends CI_Controller{
 	}
 	function deltrack($s_id,$jt_id){
 		$this->load->model('track_model');	
-		echo $this->track_model->deltrack($receive);
+		echo $this->track_model->deltrack($s_id,$jt_id);
 	}
 	function joblistappend($jt_id,$page){
 		$this->load->model('job_model');

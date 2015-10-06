@@ -53,24 +53,27 @@ class Job_model extends CI_Model {
 		$patten=array("job_query"=>$data);
 		return $patten;
 	}
-	function getdetailJob($receive){
-		$data=array();$a=0;
+	function loaddetailJob($receive){
 		$sql='SELECT * FROM `job_title` where jt_id="'.$receive.'"';
 		$result = $this->db->query($sql);
-		$jt_id;$jt_name;
 		if ($result->num_rows() > 0) {
 			$row = $result->row();
-			$jt_id=$row->jt_id;
-			$jt_name=$row->jt_name;
+			$patten=array("jt_name"=>$row->jt_name,"jt_id"=>$row->jt_id);
+			return $patten;
 		}
-		$sql='SELECT * FROM `job_information`where jt_id="'.$receive.'" limit 10';
+	}
+	function joblistappend($jt_id,$page){
+		$data=array();$a=0;
+		$index=($page-1)*10;
+		$newpage=$page+1;
+		$sql='SELECT * FROM `job_information`where jt_id="'.$jt_id.'" limit '.$index.',10';
 		$result = $this->db->query($sql);
 		foreach ($result->result() as $row)
 		{
 			$obj=array("j_name"=>$row->j_name,"j_cname"=>$row->j_cname,"j_address"=>$row->j_address,"j_setdate"=>$row->j_setdate,"j_url"=>$row->j_url);
 			$data[$a]=$obj;$a++;
 		}
-		$patten=array("jt_name"=>$jt_name,"jt_id"=>$jt_id,"job_query"=>$data);
+		$patten=array("page"=>$newpage,"job_query"=>$data);
 		return $patten;
 	}
 	function getscore($s_id,$cla){
@@ -116,19 +119,5 @@ class Job_model extends CI_Model {
 			$patten=array("progress_bar"=>$dom,"learned"=>$row->rec_subject,"class_score"=>$row->rank_score,"lisence_score"=>$row->l_score,"total_score"=>$row->total,"jt_name"=>$row->jt_name);
 			return $patten;
 		}
-	}
-	function joblistappend($jt_id,$page){
-		$data=array();$a=0;
-		$index=($page-1)*10;
-		$newpage=$page+1;
-		$sql='SELECT * FROM `job_information`where jt_id="'.$jt_id.'" limit '.$index.',10';
-		$result = $this->db->query($sql);
-		foreach ($result->result() as $row)
-		{
-			$obj=array("j_name"=>$row->j_name,"j_cname"=>$row->j_cname,"j_address"=>$row->j_address,"j_setdate"=>$row->j_setdate,"j_url"=>$row->j_url);
-			$data[$a]=$obj;$a++;
-		}
-		$patten=array("page"=>$newpage,"job_query"=>$data);
-		return $patten;
 	}
 }
