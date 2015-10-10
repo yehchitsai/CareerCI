@@ -27,4 +27,9 @@
     <label for="lan_2">English</label>
   </fieldset>
 </div>
+<script>
+	$(document).ready(function(){
+		changelan("#lan_1");
+	})
+</script>
 

@@ -11,46 +11,42 @@ class Career extends CI_Controller{
         header('Access-Control-Max-Age: 1000');
         header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');		
     }  
-	function menu($receive)
+	function menu($lan,$receive)
 	{
+		$this->lang->load($lan);
 		$query = $this->db->get_where('student', array('s_id' => $receive));
 		if ($query->num_rows() > 0) {
 			$row = $query->row();
 			$name=$row->s_name;
 		}
-		$patten = array('user_name'=>$name);
+		$patten = array('user_name'=>$name,'menu_welcome'=>$this->lang->line('menu_welcome'),'menu_job'=>$this->lang->line('menu_job'),'menu_track'=>$this->lang->line('menu_track'),'menu_message'=>$this->lang->line('menu_message'));
 		$this->parser->parse('p2_menu', $patten);
+
 	}
-	function job($receive)
+	function job($lan,$receive)
 	{
 		$this->load->model('job_model');
-		$patten=$this->job_model->progress_bar($receive);
+		$patten=$this->job_model->progress_bar($lan,$receive);
 		$this->parser->parse('p2_1_job', $patten);
 	}
-	function detailJob($receive)
+	function detailJob($lan,$receive)
 	{
 		$this->load->model('job_model');
-		$patten=$this->job_model->loaddetailJob($receive);
+		$patten=$this->job_model->loaddetailJob($lan,$receive);
 		$this->parser->parse('p2_1_1_detailJob', $patten);
 		//$this->load->view('p2_1_1_detailJob');
 	}
-	function score($s_id,$cla)
+	function score($lan,$s_id,$cla)
 	{
 		$this->load->model('job_model');
-		$patten=$this->job_model->getscore($s_id,$cla);
+		$patten=$this->job_model->getscore($lan,$s_id,$cla);
 		$this->parser->parse('p2_1_2_score', $patten);
 	}
 
-	function track($receive)
+	function track($lan,$receive)
 	{
-		$data=array();$a=0;
-		$sql='SELECT * FROM `track` inner join job_title on track.jt_id=job_title.jt_id where s_id="'.$receive.'"';
-		$result = $this->db->query($sql);
-		foreach ($result->result() as $row){
-			$obj=array("jt_id"=>$row->jt_id,"jt_name"=>$row->jt_name,"track_date"=>$row->t_date);
-			$data[$a]=$obj;$a++;
-		}
-		$patten=array("track_query"=>$data);
+		$this->load->model('track_model');
+		$patten=$this->track_model->track($lan,$receive);
 		$this->parser->parse('p2_2_track', $patten);
 	}
 	function push()
@@ -78,9 +74,9 @@ class Career extends CI_Controller{
 		$this->load->model('track_model');	
 		echo $this->track_model->deltrack($s_id,$jt_id);
 	}
-	function joblistappend($jt_id,$page){
+	function joblistappend($lan,$jt_id,$page){
 		$this->load->model('job_model');
-		$patten=$this->job_model->joblistappend($jt_id,$page);
+		$patten=$this->job_model->joblistappend($lan,$jt_id,$page);
 		$this->parser->parse('detailjob_append', $patten);
 	}
 }  

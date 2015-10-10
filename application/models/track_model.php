@@ -145,5 +145,25 @@ class Track_model extends CI_Model {
             return "TRUE";
         }
     }
-	
+	function track($lan,$receive)
+    {
+
+        $this->lang->load($lan);
+        $data=array();$a=0;
+        switch ($lan) {
+            case 'en_US':
+                $sql ='SELECT job_title.jt_id,job_title.jt_ename as jt_name,track.t_date FROM `track` inner join job_title on track.jt_id=job_title.jt_id where s_id="'.$receive.'"';              
+                break;
+            
+            case 'zh_TW':             
+                $sql ='SELECT job_title.jt_id,job_title.jt_name,track.t_date FROM `track` inner join job_title on track.jt_id=job_title.jt_id where s_id="'.$receive.'"';
+                break;
+        }
+        $result = $this->db->query($sql);
+        foreach ($result->result() as $row){
+            $obj=array("jt_id"=>$row->jt_id,"jt_name"=>$row->jt_name,"track_date"=>$row->t_date,'track_btn'=>$this->lang->line('track_btn'));
+            $data[$a]=$obj;$a++;
+        }
+        return array("track_query"=>$data,'track_caption'=>$this->lang->line('track_caption'),'track_name'=>$this->lang->line('track_name'),'track_date'=>$this->lang->line('track_date'),'track_option'=>$this->lang->line('track_option'));
+    }
 } ?>
