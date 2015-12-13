@@ -1,0 +1,197 @@
+@import url(http://fonts.googleapis.com/css?family=Oxygen+Mono);
+/* Please Keep this font import at the very top of any CSS file */
+@charset "UTF-8";
+/* Starter CSS for Flyout Menu */
+html{height:100%;}
+body{height:100%;font-family: Microsoft JhengHei; position: relative;}
+.navbar{box-shadow:0 2px 2px rgba(0,0,0,0.2);}
+.sidebar ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.sidebar ul li {
+  min-height: 1px;
+  line-height: 1em;
+  vertical-align: middle;
+  float: none;
+}
+.sidebar {
+  z-index: 100;
+  position: relative;
+	top: 0px;
+  overflow:hidden;
+  width: 75px;
+  height:100%;
+  background: #333333;
+  border-right: 4px solid #32CD32;
+  font-size: 16px;
+}
+.sidebar:hover{
+  width: 200px;
+  transition: width 0.5s;
+}
+.sidebar a {
+  display: block;
+  padding: 15px 20px;
+  color: #ffffff;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.sidebar > ul {
+  width: 200px;
+}
+.sidebar > ul > li > a:hover {
+  color: #ffffff;
+}
+.sidebar > ul > li.active a {  background: #1b9bff;}
+.sidebar > ul > li a:hover,
+.sidebar > ul > li:hover a {  background: #1b9bff;}
+.sidebar-icon{	padding-right:30px;}
+.navbar{  background-color: #222222;}
+.panel{margin-bottom:18px;background-color:transparent;border:none;border-radius:2px;-webkit-box-shadow:0 2px 2px rgba(0,0,0,0.15);box-shadow:0 2px 2px rgba(0,0,0,0.15)}
+.panel-body{padding:20px;background-color:#f8f9fa}
+.panel-body:before,.panel-body:after{content:" ";display:table}
+.panel-body:after{clear:both}
+#contain{
+  z-index: 0;
+  background-color:#f8f9fa;
+  position:absolute;
+  top:70px;
+  left: 75px;
+  bottom: 0;
+  right: 0;
+  overflow-x: auto;
+}
+.sidebar-head{
+  padding-top: 0px;
+  margin-bottom: 30px;
+  border-bottom: 4px solid #32CD32;
+  font-size: 18px;
+  font-weight: bold;
+}
+.sidebar-bottom{
+  position: absolute;
+  width: 200px;
+  bottom: 0;
+  border-top: 4px solid #32CD32;
+  overflow: hidden;
+}
+.headaction{
+  top:-20px;
+  z-index: -1000;
+  position:absolute;
+  left: 75px;
+  right: 0;
+}
+.btn-add{
+  color: #0277bd;
+  background-color: #b3e5fc;
+  border-radius: 50%;
+}
+.btn-add:hover{
+  color: black;
+ background-color: #29b6f6;
+}
+.bg_lb{background-color: #b3e5fc;}
+.bg_py{background-color: #FDDA85;}
+.project-type{width:25px}
+.project-type div{
+  display:block;
+  width:30px;
+  height:30px;
+  line-height:30px;
+  z-index:500;
+  -webkit-border-radius:3px;
+  -moz-border-radius:3px;
+  border-radius:3px;
+  color:#fff;
+  font-size:18px;
+  text-align:center;
+  margin:auto;}
+.project-type div.release-phase{background:#8CAF62;}
+.project-type div.release-phase:before{content:"R"}
+.release-phase.icon-shadow:hover{box-shadow: 0px 0px 5px 3px rgba(0, 255, 16, 0.64);}
+.release-phase.icon-shadow.active{box-shadow: 0px 0px 5px 3px rgba(0, 255, 16, 0.64);}
+.project-type div.beta-phase{background:#7FA5C4}
+.project-type div.beta-phase:before{content:"B"}
+.beta-phase.icon-shadow:hover{box-shadow:0px 0px 5px 3px rgba(22, 185, 255, 0.64);}
+.beta-phase.icon-shadow.active{box-shadow:0px 0px 5px 3px rgba(22, 185, 255, 0.64);}
+.project-type div.alpha-phase{background:#E49788}
+.project-type div.alpha-phase:before{content:"A"}
+.alpha-phase.icon-shadow:hover{box-shadow: 0px 0px 5px 3px rgba(255, 0, 0, 0.64);}
+.alpha-phase.icon-shadow.active{box-shadow: 0px 0px 5px 3px rgba(255, 0, 0, 0.64);}
+.form-release{background-color: #8be18b; }
+.form-beta{background-color: #80D3C9; }
+.form-alpha{background-color: #fd7c83; }
+.vtable{
+  position: relative;
+  overflow-y:auto; 
+  font-size: 12px;
+  background-color: white;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.grid{
+  width: 400px;
+  height: 633px;
+  margin: 0;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  float:left;
+}
+.grid div{
+  float: none;
+}
+.gittable{
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  background-color: #d6d5d5;
+  height: 175px;
+  float: left;
+  overflow-y:auto; 
+}
+.gititem{
+  background-color: white;
+  width: 95%;
+  margin: 0;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 87%;
+}
+.gititem:hover{
+  background-color: #8be18b;
+  box-shadow: 0px 0px 5px 6px rgba(50, 203, 50, 0.64);
+}
+.gititem.active{
+  background-color: #8be18b;
+  box-shadow: 0px 0px 5px 6px rgba(50, 203, 50, 0.64);
+}
+/* Absolute Center Spinner */
+.loading {
+  position: fixed;
+  z-index: 999;
+  height: 2em;
+  width: 2em;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+/* Transparent Overlay */
+.loading:before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(143,143,143,0.3);
+}

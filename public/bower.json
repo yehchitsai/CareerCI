@@ -1,0 +1,19 @@
+{
+  "name": "public",
+  "version": "0.0.0",
+  "homepage": "https://github.com/yehchitsai/CareerCI",
+  "authors": [
+    "jackdog040506 <jackdog040506@gmail.com>"
+  ],
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
