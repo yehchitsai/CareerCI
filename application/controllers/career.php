@@ -68,7 +68,7 @@ class Career extends CI_Controller{
 	}
 	function addtrack($s_id,$jt_id){
 		$this->load->model('track_model');	
-		echo $this->track_model->addtrack($receive);
+		echo $this->track_model->addtrack($s_id,$jt_id);
 	}
 	function deltrack($s_id,$jt_id){
 		$this->load->model('track_model');	
