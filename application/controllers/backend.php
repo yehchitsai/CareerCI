@@ -15,12 +15,12 @@ class Backend extends CI_Controller{
         header("Content-Type:text/html; charset=utf-8");
     }  
     function index(){
-        if($this->backend_model->is_login()){
-            $this->parser->parse('backend/sidebar_frame', array('action'=>$this->backend_model->get_action()));
-        }
-        else{
-        $this->load->view('backend/login_frame');
-        }
+        //if($this->backend_model->is_login()){
+            $this->parser->parse('backend/sidebar_frame', array('action'=>'dashboard'));
+        //}
+        //else{
+        //$this->load->view('backend/login_frame');
+        //}
 	}
     function receivelogin(){
         if ($this->backend_model->login($this->input->post('id'),$this->input->post('pwd'))) {

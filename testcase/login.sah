@@ -1,0 +1,7 @@
+_setValue(_textbox("username"), "A0128307");
+_setValue(_password("password"), "qqoo5566");
+_click(_submit("登入"));
+_assertExists(_heading3("許家睿您好"));
+_assertVisible(_heading3("許家睿您好"));
+_assertEqual("許家睿您好", _getText(_heading3("許家睿您好")));
+_assertContainsText("許家睿您好", _heading3("許家睿您好"));
